@@ -11,5 +11,19 @@ var stringifyJSON = function(obj) {
   if(typeof obj === 'string') {
     return '"' + obj + '"';
   }
+  
+  if(Array.isArray(obj)) {
+    var elements = [];
+    for( var i = 0; i < obj.length; i++ ) {
+      elements.push(stringifyJSON(obj[i]));
+    }
+    return '[' + elements.join(',') + ']';
+  }
+  
+  
+
+  if(obj === null){
+    return 'null';
+  }
 
 };
