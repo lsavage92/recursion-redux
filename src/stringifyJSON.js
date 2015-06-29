@@ -20,10 +20,16 @@ var stringifyJSON = function(obj) {
     return '[' + elements.join(',') + ']';
   }
   
-  
-
-  if(obj === null){
-    return 'null';
+  if(typeof obj === 'object') {
+    if(obj === null){
+      return 'null';
+    }
+    var properties = [];
+    for( var key in obj) {
+      properties.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
+    }
+    return '{' + properties.join(',') + '}';
   }
+
 
 };
