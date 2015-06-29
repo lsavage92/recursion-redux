@@ -10,15 +10,17 @@ var getElementsByClassName = function(className, node){
   node = node || document.body;
 
   //if node.classname is the same as className
-  if( node.classList.indexOf(className) >= 0 ){
+  for(var i = 0; i < node.classList.length; i++){
     //push to nodes array
-    nodes.push(node);
+    if(node.classList[i] === className){
+        nodes.push(node);
+    }
   }
 
   // iterate through children
   for( var i = 0; i < node.children.length; i++ ) {
     // call getElementsByClassName on children, concat those results to nodes
-    nodes.concat(getElementsByClassName(className, node.children[i]));
+    nodes = nodes.concat(getElementsByClassName(className, node.children[i]));
   }
   
   return nodes;
